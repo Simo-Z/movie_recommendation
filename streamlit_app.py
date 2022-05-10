@@ -7,8 +7,9 @@ import streamlit.components.v1 as components
 
 with open("./styles/style.css") as f:
     st.markdown(f"<style>{f.read()}<style>", unsafe_allow_html=True)
+most_pop_n_movies = 5
 
-most_pop_movie_list = top_n_movies_popularity_based()
+most_pop_movie_list = top_n_movies_popularity_based(most_pop_n_movies)
 item_based_movie_list = top_n_movies_item_based(movie_id = 1)
 user_based_movie_list = top_n_movies_user_based(user_id=1)
 
@@ -32,10 +33,9 @@ user_based_movie_list = (
         .merge(movies, how="left")
 )
 
-
 st.title("WBSFlix")
 # Popularity based 
-st.header("Most Popular - Top 10")
+st.header(f"Most Popular - Top {most_pop_n_movies}")
 st.image(most_pop_movie_list["image_url"].to_list(), width=120, caption=most_pop_movie_list["title"].to_list())
 
 # Item based 
