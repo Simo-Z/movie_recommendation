@@ -5,6 +5,7 @@ from recommenders.popularity_based import top_n_movies_popularity_based
 from recommenders.item_based import top_n_movies_item_based
 from recommenders.user_based import top_n_movies_user_based
 import streamlit.components.v1 as components
+import sklearn
 from sklearn.metrics.pairwise import cosine_similarity
 
 # Import extra Styles
