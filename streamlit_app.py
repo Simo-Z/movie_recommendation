@@ -1,48 +1,59 @@
 import streamlit as st
 import pandas as pd
+
 from recommenders.popularity_based import top_n_movies_popularity_based
 from recommenders.item_based import top_n_movies_item_based
 from recommenders.user_based import top_n_movies_user_based
 import streamlit.components.v1 as components
+from sklearn.metrics.pairwise import cosine_similarity
 
+# Import extra Styles
 with open("./styles/style.css") as f:
     st.markdown(f"<style>{f.read()}<style>", unsafe_allow_html=True)
-most_pop_n_movies = 5
 
-most_pop_movie_list = top_n_movies_popularity_based(most_pop_n_movies)
-item_based_movie_list = top_n_movies_item_based(movie_id = 1)
-user_based_movie_list = top_n_movies_user_based(user_id=1)
+# create Sidebar ----------------------------------------------
+st.sidebar.title("Personalize Recommendations")
+# import Data
+@st.cache
+def load_dfs():
+    return [pd.read_csv("./data/clean/movies.csv"),pd.read_csv("./data/clean/ratings.csv")]
 
-links_urls = pd.read_csv("./cleaned_data/cl_links_urls.csv")
-movies = pd.read_csv("./cleaned_data/cl_movies.csv")
 
-links_urls["image_url"] = links_urls["image_url"].apply(lambda x: "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/" + x) 
+movies, ratings = load_dfs()
+st.dataframe(movies)
+    
+# Population Based Recommendations
 
-most_pop_movie_list = (
-    most_pop_movie_list
-        .merge(links_urls, how="left")
-)
-item_based_movie_list = (
-    item_based_movie_list
-        .merge(links_urls, how="left")
-        .merge(movies, how="left")
-)
-user_based_movie_list = (
-    user_based_movie_list
-        .merge(links_urls, how="left", left_index=True, right_on="movieId")
-        .merge(movies, how="left")
-)
+most_pop_movies_df = top_n_movies_popularity_based()
+
+# Item based Reccomender
+fav_movie = st.sidebar.selectbox("Pick a movie you like:",  options=movies["title"])
+item_based_movies_df = top_n_movies_item_based(fav_movie, movies, ratings)
+
+
+# # User based Reccomender
+user_id = st.sidebar.selectbox("Select a UserId:",  options=ratings["userId"].unique())
+user_based_movies_df = top_n_movies_user_based(user_id, movies, ratings)
+
+# user_based_movie_list = (
+#     user_based_movie_list
+#         .merge(links_urls, how="left", left_index=True, right_on="movieId")
+#         .merge(movies, how="left")
+# )
+
+# User Interface ----------------------------------
 
 st.title("WBSFlix")
 # Popularity based 
-st.header(f"Most Popular - Top {most_pop_n_movies}")
-st.image(most_pop_movie_list["image_url"].to_list(), width=120, caption=most_pop_movie_list["title"].to_list())
+st.header(f"Most Popular - Top 5")
+st.image(most_pop_movies_df["image_url"].to_list(), width=120, caption=most_pop_movies_df["title"].to_list())
 
 # Item based 
-st.header("Item based")
-movie = st.selectbox("Pick a movie you like:", options = movies["title"].to_list(), key=movies["movieId"].to_list())
-st.image(item_based_movie_list["image_url"].to_list(), width=120, caption=item_based_movie_list["title"].to_list())
+# st.dataframe(item_based_movies_df)
+st.markdown(f"<h2> Since you liked <span class='red'>{fav_movie}</span> you may also like:<h2>", unsafe_allow_html=True)
+st.image(item_based_movies_df["image_url"].to_list(), width=120, caption=item_based_movies_df["title"].to_list())
 
-# User based 
-st.header("User based")
-st.image(user_based_movie_list["image_url"].to_list(), width=120, caption=user_based_movie_list["title"].to_list())
+# # User based 
+st.markdown(f"<h2> The User with the ID <span class='red'>{user_id}</span> might also like:<h2>", unsafe_allow_html=True)
+st.dataframe(user_based_movies_df)
+# st.image(user_based_movies_df["image_url"].to_list(), width=120, caption=user_based_movies_df["title"].to_list())
