@@ -8,4 +8,4 @@ def top_n_movies_user_based(user_id, movies: DataFrame, ratings: DataFrame, n_mo
     
     sparse_matrix = ratings.pivot(index='userId', columns='movieId', values='rating')
     movies_df = cosine_similarity(sparse_matrix)
-    return movies_df
+    return sparse_matrix

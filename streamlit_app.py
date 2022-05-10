@@ -33,8 +33,8 @@ item_based_movies_df = top_n_movies_item_based(fav_movie, movies, ratings)
 
 
 # # User based Reccomender
-user_id = st.sidebar.selectbox("Select a UserId:",  options=ratings["userId"].unique())
-user_based_movies_df = top_n_movies_user_based(user_id, movies, ratings)
+#user_id = st.sidebar.selectbox("Select a UserId:",  options=ratings["userId"].unique())
+#user_based_movies_df = top_n_movies_user_based(user_id, movies, ratings)
 
 # user_based_movie_list = (
 #     user_based_movie_list
@@ -55,6 +55,6 @@ st.markdown(f"<h2> Since you liked <span class='red'>{fav_movie}</span> you may 
 st.image(item_based_movies_df["image_url"].to_list(), width=120, caption=item_based_movies_df["title"].to_list())
 
 # # User based 
-st.markdown(f"<h2> The User with the ID <span class='red'>{user_id}</span> might also like:<h2>", unsafe_allow_html=True)
-st.dataframe(user_based_movies_df)
+#st.markdown(f"<h2> The User with the ID <span class='red'>{user_id}</span> might also like:<h2>", unsafe_allow_html=True)
+#st.dataframe(user_based_movies_df)
 # st.image(user_based_movies_df["image_url"].to_list(), width=120, caption=user_based_movies_df["title"].to_list())

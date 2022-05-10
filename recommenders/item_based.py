@@ -8,9 +8,9 @@ def top_n_movies_item_based(movie_title: int, movies: pd.DataFrame, ratings: pd.
     sparse_matrix
         .corrwith(sparse_matrix[movie_id])
         .sort_values(ascending=False)
-        .head(n_movies )
         .reset_index()
         .query("movieId != @movie_id")
+        .head(n_movies )
         .merge(movies, how="left")
         
     )
