@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
 from recommenders.popularity_based import top_n_movies_popularity_based
-from recommenders.user_based import top_n_movies_user_based
 from recommenders.item_based import top_n_movies_item_based
+from recommenders.user_based import top_n_movies_user_based
 import streamlit.components.v1 as components
 
 with open("./styles/style.css") as f:
@@ -40,6 +40,7 @@ st.image(most_pop_movie_list["image_url"].to_list(), width=120, caption=most_pop
 
 # Item based 
 st.header("Item based")
+movie = st.selectbox("Pick a movie you like:", options = movies["title"].to_list(), key=movies["movieId"].to_list())
 st.image(item_based_movie_list["image_url"].to_list(), width=120, caption=item_based_movie_list["title"].to_list())
 
 # User based 
