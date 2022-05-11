@@ -9,7 +9,7 @@ from recommenders.user_based import top_n_movies_user_based
 
 from sklearn.metrics.pairwise import cosine_similarity
 
-st.set_page_config(page_title="WBSFlix - Simo Zilling", page_icon="./styles/Webflix_logo.png", layout="centered", initial_sidebar_state="expanded", menu_items=None)
+st.set_page_config(page_title="WBSFlix - Simo Zilling", page_icon="styles/Webflix_logo.png", layout="centered", initial_sidebar_state="expanded", menu_items=None)
 # Import extra Styles
 with open("./styles/style.css") as f:
     st.markdown(f'<style>{f.read()}<style>', unsafe_allow_html=True)
