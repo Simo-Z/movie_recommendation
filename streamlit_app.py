@@ -41,7 +41,7 @@ user_based_movies_df = top_n_movies_user_based(user_id, movies, ratings)
 
 st.title("WBSFlix")
 # Popularity based 
-st.header(f"Most Popular - Top 5")
+st.markdown(f"<h2> Most Popular - Top <span class='red'>5</span><h2>", unsafe_allow_html=True)
 st.image(most_pop_movies_df["image_url"].to_list(), width=120, caption=most_pop_movies_df["title"].to_list())
 
 # Item based 
