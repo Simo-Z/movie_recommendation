@@ -21,8 +21,8 @@ def load_dfs():
 
 
 movies, ratings = load_dfs()
-# st.dataframe(movies)
-    
+st.dataframe(movies)
+
 # Population Based Recommendations
 
 most_pop_movies_df = top_n_movies_popularity_based()
@@ -37,8 +37,7 @@ user_id = st.sidebar.selectbox("Select a UserId:",  options=ratings["userId"].un
 user_based_movies_df = top_n_movies_user_based(user_id, movies, ratings)
 
 
-
-# User Interface ----------------------------------
+# User Interface ---------------------------------- 
 
 st.title("WBSFlix")
 # Popularity based 
