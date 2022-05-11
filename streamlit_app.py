@@ -21,7 +21,7 @@ def load_dfs():
 
 
 movies, ratings = load_dfs()
-st.dataframe(movies)
+# st.dataframe(movies)
 
 # Population Based Recommendations
 
