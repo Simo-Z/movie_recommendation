@@ -1,11 +1,12 @@
-import pandas as DataFrame
+import pandas as pd
 import streamlit as st
 import sklearn
-from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics.pairwise import cosine_similaritysk
 
 @st.cache
-def top_n_movies_user_based(user_id, movies: DataFrame, ratings: DataFrame, n_movies: int = 5):
+def top_n_movies_user_based(user_id, movies: pd.DataFrame, ratings: pd.DataFrame, n_movies: int = 5):
     
     sparse_matrix = ratings.pivot(index='userId', columns='movieId', values='rating')
-    #cosine_similarity(sparse_matrix)
-    return sparse_matrix
+    #sample_distance = pd.DataFrame(cosine_distances(sparse_matrix.fillna(0)), columns=sparse_matrix.index, index=sparse_matrix.index)
+    
+    return cosine_similarity(sparse_matrix.fillna(0))

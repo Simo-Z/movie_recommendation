@@ -47,7 +47,7 @@ st.image(most_pop_movies_df["image_url"].to_list(), width=120, caption=most_pop_
 
 # Item based 
 # st.dataframe(item_based_movies_df)
-st.markdown(f"<h2> Since you liked <span class='red'>{fav_movie}</span> you may also like:<h2>", unsafe_allow_html=True)
+st.markdown(f"<h2> Since you like <span class='red'>{fav_movie}</span> you may also like:<h2>", unsafe_allow_html=True)
 st.image(item_based_movies_df["image_url"].to_list(), width=120, caption=item_based_movies_df["title"].to_list())
 
 # # User based 
