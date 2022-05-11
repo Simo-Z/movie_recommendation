@@ -19,9 +19,10 @@ st.sidebar.title("Personalize Recommendations")
 def load_dfs():
     return [pd.read_csv("./data/clean/movies.csv"),pd.read_csv("./data/clean/ratings.csv")]
 
-
 movies, ratings = load_dfs()
 # st.dataframe(movies)
+st.dataframe(ratings)
+
 
 # Population Based Recommendations
 

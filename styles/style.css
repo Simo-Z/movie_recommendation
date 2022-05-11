@@ -2,10 +2,12 @@ h1 {
   color: red;
 }
 img {
-  margin: 0.5rem;
+  box-shadow: 5px 5px 8px black;
+  border-radius: 0.2rem;
 }
 img:hover {
-  transform: scale(1.1) translateY(-4%);
+  transform: scale(1.05) translateY(-2%);
+  box-shadow: 8px 8px 8px black;
 }
 .red {
   color: red;
@@ -21,7 +23,10 @@ body {
 img {
   transition: transform 0.2s;
 }
-.css-1v0mbdj:hover {
-  color: white !important;
-  font-weight: 700;
+
+.css-1v0mbdj:hover .css-ltfnpr {
+  color: red !important;
+}
+.css-ltfnpr {
+  font-size: 1rem;
 }

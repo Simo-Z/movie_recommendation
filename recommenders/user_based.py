@@ -5,6 +5,12 @@ import streamlit as st
 def top_n_movies_user_based(user_id, movies: pd.DataFrame, ratings: pd.DataFrame, n_movies: int = 5):
     
     sparse_matrix = ratings.pivot(index='userId', columns='movieId', values='rating')
-    #sample_distance = pd.DataFrame(cosine_distances(sparse_matrix.fillna(0)), columns=sparse_matrix.index, index=sparse_matrix.index)
+    # Get User similarity
+    user_sim_matrix =cosine_similarity(sparse_matrix.fillna(0))[user_id]
+    # weight user ratings
+    ratings
+    # get most popular 
+
+    # Remove movies that User already saw
     
-    return cosine_similarity(sparse_matrix.fillna(0))
+    return user_sim_matrix
