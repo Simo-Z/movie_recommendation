@@ -12,7 +12,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 st.set_page_config(page_title="WBSFlix - Simo Zilling", page_icon="./styles/Webflix_logo.png", layout="centered", initial_sidebar_state="expanded", menu_items=None)
 # Import extra Styles
 with open("./styles/style.css") as f:
-    st.markdown(f"<style>{f.read()}<style>", unsafe_allow_html=True)
+    st.markdown(f'<style>{f.read()}<style>', unsafe_allow_html=True)
 
 # create Sidebar ----------------------------------------------
 st.sidebar.title("Personalize Recommendations")
@@ -22,10 +22,10 @@ def load_dfs():
     return [pd.read_csv("./data/clean/movies.csv"),pd.read_csv("./data/clean/ratings.csv")]
 
 movies, ratings = load_dfs()
-"### Movies"
-st.dataframe(movies)
-"### Ratings"
-st.dataframe(ratings)
+#"### Movies"
+#st.dataframe(movies)
+#"### Ratings"
+#st.dataframe(ratings)
 
 
 # Population Based Recommendations
