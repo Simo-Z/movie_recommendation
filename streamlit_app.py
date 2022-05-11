@@ -1,3 +1,4 @@
+from os import link
 import streamlit as st
 import pandas as pd
 
@@ -8,6 +9,7 @@ from recommenders.user_based import top_n_movies_user_based
 
 from sklearn.metrics.pairwise import cosine_similarity
 
+st.set_page_config(page_title="WBSFlix - Simo Zilling", page_icon="./styles/Webflix_logo.png", layout="centered", initial_sidebar_state="expanded", menu_items=None)
 # Import extra Styles
 with open("./styles/style.css") as f:
     st.markdown(f"<style>{f.read()}<style>", unsafe_allow_html=True)
@@ -20,7 +22,9 @@ def load_dfs():
     return [pd.read_csv("./data/clean/movies.csv"),pd.read_csv("./data/clean/ratings.csv")]
 
 movies, ratings = load_dfs()
-# st.dataframe(movies)
+"### Movies"
+st.dataframe(movies)
+"### Ratings"
 st.dataframe(ratings)
 
 
@@ -54,3 +58,4 @@ st.image(item_based_movies_df["image_url"].to_list(), width=120, caption=item_ba
 st.markdown(f"<h2> The User with the ID <span class='red'>{user_id}</span> might also like:<h2>", unsafe_allow_html=True)
 st.dataframe(user_based_movies_df)
 #st.image(user_based_movies_df["image_url"].to_list(), width=120, caption=user_based_movies_df["title"].to_list())
+

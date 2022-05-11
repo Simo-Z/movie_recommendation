@@ -1,3 +1,8 @@
+.css-1v3fvcr {
+  background-image: url("styles/Webflix_Logo.png");
+  background-size: cover;
+}
+
 h1 {
   color: red;
 }
@@ -12,10 +17,6 @@ img:hover {
 .red {
   color: red;
 }
-body {
-  background-image: url("https://images.unsplash.com/photo-1542281286-9e0a16bb7366");
-  background-size: cover;
-}
 .css-1kyxreq {
   justify-content: space-between;
 }
@@ -29,4 +30,7 @@ img {
 }
 .css-ltfnpr {
   font-size: 1rem;
+}
+.etr89bj1 {
+  margin: auto;
 }
