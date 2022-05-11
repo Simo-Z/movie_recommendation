@@ -1,7 +1,6 @@
 import pandas as pd
-import streamlit as st
 from sklearn.metrics.pairwise import cosine_similarity
-
+import streamlit as st
 @st.cache
 def top_n_movies_user_based(user_id, movies: pd.DataFrame, ratings: pd.DataFrame, n_movies: int = 5):
     
